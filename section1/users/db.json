@@ -19,9 +19,10 @@
       "companyId": "2"
     },
     {
-      "firstName": "Eduardo",
-      "age": 30,
-      "id": "KpJBile"
+      "firstName": "Eduardo Santos",
+      "age": 31,
+      "id": "KpJBile",
+      "companyId": "1"
     }
   ],
   "companies": [
