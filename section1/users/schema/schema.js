@@ -2,6 +2,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
+  GraphQLBoolean,
   GraphQLSchema,
   GraphQLList,
   GraphQLNonNull,
@@ -90,10 +91,20 @@ const mutation = new GraphQLObjectType({
         age: { type: new GraphQLNonNull(GraphQLInt) },
         companyId: { type: GraphQLString },
       },
-      resolve(parentValue, { firstName, age }) {
+      resolve(parentValue, { firstName, age, companyId }) {
         return axios
-          .post(`http://localhost:3000/users`, { firstName, age })
+          .post(`http://localhost:3000/users`, { firstName, age, companyId })
           .then((resp) => resp.data);
+      },
+    },
+    deleteUser: {
+      type: GraphQLBoolean,
+      args: { id: { type: GraphQLString } },
+      resolve(parentValue, args) {
+        return axios
+          .delete(`http://localhost:3000/users/${args.id}`)
+          .then((resp) => resp.status === 200)
+          .catch((resp) => false);
       },
     },
   },
