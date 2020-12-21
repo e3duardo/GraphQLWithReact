@@ -5,7 +5,11 @@ import gql from "graphql-tag";
 class SongList extends Component {
   renderSongs() {
     return this.props.data.songs.map((song) => {
-      return <li key={song.id}>{song.title}</li>;
+      return (
+        <li key={song.id} className="collection-item">
+          {song.title}
+        </li>
+      );
     });
   }
 
@@ -14,7 +18,7 @@ class SongList extends Component {
       return <div>Loading...</div>;
     }
 
-    return <ul>{this.renderSongs()}</ul>;
+    return <ul className="collection">{this.renderSongs()}</ul>;
   }
 }
 
