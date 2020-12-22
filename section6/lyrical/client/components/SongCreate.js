@@ -10,11 +10,16 @@ class SongCreate extends Component {
       title: "",
     };
   }
+
+  onSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div>
         <h3>Create a new Song</h3>
-        <form>
+        <form onSubmit={this.onSubmit.bind(this)}>
           <label>Song Title</label>
           <input
             value={this.state.title}
@@ -30,6 +35,7 @@ const query = gql`
   mutation {
     addSong(title: "knock on heavens door") {
       id
+      title
     }
   }
 `;
