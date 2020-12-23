@@ -4,16 +4,12 @@ import { graphql } from "react-apollo";
 import query from "../queries/fetchSong";
 
 class SongDetail extends Component {
-  constructor(props) {
-    super();
-    console.log(props);
-  }
   render() {
-    if (this.props.data.loading) {
+    const { song, loading } = this.props.data;
+
+    if (loading) {
       return <div>Loading...</div>;
     }
-
-    const song = this.props.data.song;
 
     return (
       <div>
