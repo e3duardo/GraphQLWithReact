@@ -17,6 +17,11 @@ class SongDetail extends Component {
       <div>
         <Link to="/">Back</Link>
         <h3>{song.title}</h3>
+        <ul>
+          {song.lyrics.map((lyric) => (
+            <li>{lyric.content}</li>
+          ))}
+        </ul>
         <LyricCreate song={song} />
       </div>
     );

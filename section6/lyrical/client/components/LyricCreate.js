@@ -3,29 +3,30 @@ import { Link, hashHistory } from "react-router";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
-import query from "../queries/fetchSongs";
+import query from "../queries/fetchSong";
 
 class LyricCreate extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      title: "",
+      content: "",
     };
   }
 
   onSubmit(event) {
     event.preventDefault();
 
+    console.log(this.props.song);
     this.props
       .mutate({
         variables: {
-          title: this.state.title,
+          content: this.state.content,
+          songId: this.props.song.id,
         },
-        refetchQueries: [{ query }],
+        // refetchQueri es: [{ query }],
       })
-      .then((e) => hashHistory.push("/"))
-      .catch((e) => console.error(e));
+      .then((e) => this.setState({ content: "" }));
+    //   .catch((e) => console.error(e));
   }
 
   render() {
@@ -33,8 +34,8 @@ class LyricCreate extends Component {
       <form onSubmit={this.onSubmit.bind(this)}>
         <label>Add a Lyric</label>
         <input
-          value={this.state.title}
-          onChange={(event) => this.setState({ title: event.target.value })}
+          value={this.state.content}
+          onChange={(event) => this.setState({ content: event.target.value })}
         />
       </form>
     );
@@ -45,6 +46,9 @@ const mutation = gql`
   mutation AddSong($content: String!, $songId: ID!) {
     addLyricToSong(content: $content, songId: $songId) {
       id
+      lyrics {
+        content
+      }
     }
   }
 `;
