@@ -3,7 +3,11 @@ import { Link } from "react-router";
 
 class LyricList extends Component {
   renderLyrics() {
-    return <li className="collection-item">ok</li>;
+    return this.props.lyrics.map(({ id, content }) => (
+      <li key={id} className="collection-item">
+        {content}
+      </li>
+    ));
   }
 
   render() {
