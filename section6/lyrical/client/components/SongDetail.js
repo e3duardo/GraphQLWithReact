@@ -22,7 +22,7 @@ class SongDetail extends Component {
             <li>{lyric.content}</li>
           ))}
         </ul>
-        <LyricCreate song={song} />
+        <LyricCreate songId={song.id} />
       </div>
     );
   }

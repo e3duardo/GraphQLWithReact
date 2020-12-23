@@ -16,17 +16,16 @@ class LyricCreate extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    console.log(this.props.song);
     this.props
       .mutate({
         variables: {
           content: this.state.content,
-          songId: this.props.song.id,
+          songId: this.props.songId,
         },
-        // refetchQueri es: [{ query }],
+        refetchQueries: [{ query, variables: { id: this.props.songId } }],
       })
-      .then((e) => this.setState({ content: "" }));
-    //   .catch((e) => console.error(e));
+      .then((e) => this.setState({ content: "" }))
+      .catch((e) => console.error(e));
   }
 
   render() {
@@ -43,7 +42,7 @@ class LyricCreate extends Component {
 }
 
 const mutation = gql`
-  mutation AddSong($content: String!, $songId: ID!) {
+  mutation AddLyricToSong($content: String!, $songId: ID!) {
     addLyricToSong(content: $content, songId: $songId) {
       id
       lyrics {
