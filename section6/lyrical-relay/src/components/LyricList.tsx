@@ -9,12 +9,18 @@ type LyricListProps = {
 function LyricList({ lyrics }: LyricListProps) {
   return (
     <Collection>
-      {lyrics.map(({ id, content, likes }) => (
-        <CollectionItem key={id}>
-          {content}
-          <LyricLike lyricId={id} likes={likes} />
+      {lyrics.length ? (
+        lyrics.map(({ id, content, likes }) => (
+          <CollectionItem key={id}>
+            {content}
+            <LyricLike lyricId={id} likes={likes} />
+          </CollectionItem>
+        ))
+      ) : (
+        <CollectionItem style={{ color: "#bcbcbc" }}>
+          Nothing Here! Add a lyric below.
         </CollectionItem>
-      ))}
+      )}
     </Collection>
   );
 }

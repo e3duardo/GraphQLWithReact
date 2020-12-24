@@ -12,18 +12,15 @@ import FloatingButton from "./FloatingButton";
 import SongDelete from "./SongDelete";
 
 function SongList() {
-  function renderSongs(resp: SongListQueryResponse) {
-    const songs = (resp.songs as unknown) as { id: string; title: string }[];
-    return songs
-      .filter((s) => s !== null)
-      .map(({ id, title }) => {
-        return (
-          <CollectionItem key={id}>
-            <Link to={`/songs/${id}`}>{title}</Link>
-            <SongDelete id={id} />
-          </CollectionItem>
-        );
-      });
+  function renderSongs(songs: { id: string; title: string }[]) {
+    return songs.map(({ id, title }) => {
+      return (
+        <CollectionItem key={id}>
+          <Link to={`/songs/${id}`}>{title}</Link>
+          <SongDelete id={id} />
+        </CollectionItem>
+      );
+    });
   }
 
   return (
@@ -43,7 +40,20 @@ function SongList() {
           if (error) {
             return <div>{error.message}</div>;
           } else if (props) {
-            return props.songs && <Collection>{renderSongs(props)}</Collection>;
+            const songs = (props.songs?.filter(
+              (s) => s !== null
+            ) as unknown) as { id: string; title: string }[];
+            return (
+              <Collection>
+                {songs.length ? (
+                  renderSongs(songs)
+                ) : (
+                  <CollectionItem style={{ color: "#bcbcbc" }}>
+                    Nothing Here! Add a song on the button below.
+                  </CollectionItem>
+                )}
+              </Collection>
+            );
           }
           return <div>Loading</div>;
         }}
