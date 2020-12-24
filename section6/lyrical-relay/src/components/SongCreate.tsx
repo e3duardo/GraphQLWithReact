@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import { TextInput } from "react-materialize";
 import { commitMutation } from "react-relay";
 import graphql from "babel-plugin-relay/macro";
@@ -38,6 +38,7 @@ function SongCreate({ history }: RouteComponentProps<{}>) {
 
   return (
     <div>
+      <Link to="/">Back</Link>
       <h3>Create a new Song</h3>
       <form onSubmit={(e) => onSubmit(e)}>
         <TextInput
