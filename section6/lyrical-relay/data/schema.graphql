@@ -1,0 +1,20 @@
+schema {
+  query: Root
+}
+
+type Root {
+  songs: [Song]
+}
+
+type Song {
+  id: ID
+  title: String
+  lyrics: [Lyric]
+}
+
+type Lyric {
+  id: ID
+  likes: Integer
+  content: String
+  song: Song
+}
