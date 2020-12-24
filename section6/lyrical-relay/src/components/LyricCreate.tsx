@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextInput } from "react-materialize";
+import { commitMutation } from "react-relay";
+import graphql from "babel-plugin-relay/macro";
+
+import environment from "../lib/createRelayEnvironment";
 
 type LyricListProps = {
   songId: string;
@@ -7,9 +11,21 @@ type LyricListProps = {
 
 function LyricList({ songId }: LyricListProps) {
   const [content, setContent] = useState("");
+
+  useEffect(() => {
+    const input: HTMLInputElement = document.querySelector("input")!;
+    input.focus();
+  }, []);
+
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    alert("created!");
+
+    commitMutation(environment, {
+      mutation,
+      variables: { content, songId },
+      onCompleted: () => setContent(""),
+      onError: (err: any) => console.error(err),
+    });
   }
 
   return (
@@ -23,5 +39,18 @@ function LyricList({ songId }: LyricListProps) {
     </form>
   );
 }
+
+const mutation = graphql`
+  mutation LyricCreateMutation($content: String!, $songId: ID!) {
+    addLyricToSong(content: $content, songId: $songId) {
+      id
+      lyrics {
+        id
+        content
+        likes
+      }
+    }
+  }
+`;
 
 export default LyricList;

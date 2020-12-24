@@ -38,8 +38,9 @@ const mutation = new GraphQLObjectType({
     deleteSong: {
       type: SongType,
       args: { id: { type: GraphQLID } },
-      resolve(parentValue, { id }) {
-        return Song.remove({ _id: id });
+      resolve: async function resolve(parentValue, { id }) {
+        await Song.remove({ _id: id });
+        return { id };
       },
     },
   },

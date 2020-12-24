@@ -1,18 +1,22 @@
 import React from "react";
-import { Icon, Button } from "react-materialize";
+import { Button, Icon } from "react-materialize";
+import { useHistory } from "react-router-dom";
 
-const FloatingButton = React.forwardRef((props, ref) => (
-  <Button
-    className="red"
-    floating
-    icon={<Icon>add</Icon>}
-    large
-    node="a"
-    fab={{ direction: "right" }}
-    waves="light"
-    {...props}
-  />
-));
+function FloatingButton({ to }: { to: any }) {
+  const history = useHistory();
 
-// ref={ref}
+  return (
+    <Button
+      className="red"
+      floating
+      icon={<Icon>add</Icon>}
+      large
+      node="a"
+      fab={{ direction: "right" }}
+      waves="light"
+      onClick={() => history.push(to)}
+    />
+  );
+}
+
 export default FloatingButton;

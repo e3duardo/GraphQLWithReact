@@ -2,11 +2,6 @@ schema {
   query: Root
 }
 
-type Root {
-  songs: [Song]
-  song(id: ID!): Song
-}
-
 type Song {
   id: ID
   title: String
@@ -18,4 +13,16 @@ type Lyric {
   likes: Int
   content: String
   song: Song
+}
+
+type Root {
+  songs: [Song]
+  song(id: ID!): Song
+}
+
+type Mutation {
+  addSong(title: String!): Song
+  addLyricToSong(content: String!, songId: ID!): Song
+  likeLyric(id: ID!): Lyric
+  deleteSong(id: ID!): Song
 }
