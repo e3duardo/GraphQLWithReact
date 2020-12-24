@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
 import { Collection, CollectionItem } from "react-materialize";
-import { QueryRenderer } from "react-relay";
-import graphql from "babel-plugin-relay/macro";
+import { QueryRenderer, graphql } from "react-relay";
 
 import environment from "../lib/createRelayEnvironment";
-import {
-  SongListQuery,
-  SongListQueryResponse,
-} from "./__generated__/SongListQuery.graphql";
+import { SongListQuery } from "./__generated__/SongListQuery.graphql";
 import FloatingButton from "./FloatingButton";
 import SongDelete from "./SongDelete";
 

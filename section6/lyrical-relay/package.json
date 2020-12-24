@@ -12,8 +12,10 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-relay": "^7.0.17",
     "@types/react-router-dom": "^5.1.6",
+    "customize-cra": "^1.0.0",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^17.0.1",
+    "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.1",
     "react-materialize": "^3.9.5",
     "react-relay": "^10.1.2",
@@ -23,11 +25,11 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "eact-app-rewired start",
+    "build": "eact-app-rewired build",
+    "test": "eact-app-rewired test",
     "eject": "react-scripts eject",
-    "relay": "relay-compiler --verbose --src ./src --schema ./data/schema.graphql --language typescript"
+    "relay": "relay-compiler --language typescript --extensions ts tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +54,7 @@
     "graphql": "^15.4.0",
     "relay-compiler": "^10.1.2",
     "relay-compiler-language-typescript": "^13.0.2",
-    "relay-config": "^10.1.2"
+    "relay-config": "^10.1.2",
+    "vscode-apollo-relay": "^1.5.1"
   }
 }

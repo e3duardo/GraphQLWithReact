@@ -1,6 +1,5 @@
 import { Icon } from "react-materialize";
-import { commitMutation } from "react-relay";
-import graphql from "babel-plugin-relay/macro";
+import { commitMutation, graphql } from "react-relay";
 
 import environment from "../lib/createRelayEnvironment";
 

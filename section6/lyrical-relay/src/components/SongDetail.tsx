@@ -1,6 +1,5 @@
 import { Link, RouteComponentProps } from "react-router-dom";
-import { QueryRenderer } from "react-relay";
-import graphql from "babel-plugin-relay/macro";
+import { QueryRenderer, graphql } from "react-relay";
 
 import LyricList from "./LyricList";
 import LyricCreate from "./LyricCreate";
