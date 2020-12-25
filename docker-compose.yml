@@ -2,12 +2,14 @@ version: '3.1'
 services:
   mongo:
     image: mongo
-    container_name: "lyrical-mongo"
+    container_name: "grapql-mongo"
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: lyric
+      MONGO_INITDB_DATABASE: root-db
+      MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
+      - './docker.js:/docker-entrypoint-initdb.d/init-mongo.js:ro'
       - './dockervolume/mongodb:/data/db'
     ports:
       - 27017:27017
