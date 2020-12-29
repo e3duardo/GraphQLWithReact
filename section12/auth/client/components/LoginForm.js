@@ -5,9 +5,9 @@ import mutation from "../mutations/Login";
 import AuthForm from "./AuthForm";
 
 class LoginForm extends Component {
-  onLogin({ email, password }) {
+  onSubmit({ email, password }) {
     this.props.mutate({
-      args: {
+      variables: {
         email,
         password,
       },
@@ -18,7 +18,7 @@ class LoginForm extends Component {
     return (
       <div>
         <h3>Login</h3>
-        <AuthForm />
+        <AuthForm onSubmit={this.onSubmit.bind(this)} />
       </div>
     );
   }
