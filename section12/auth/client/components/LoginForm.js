@@ -8,9 +8,9 @@ import AuthForm from "./AuthForm";
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.state({
+    this.state = {
       errors: [],
-    });
+    };
   }
   onSubmit({ email, password }) {
     this.props
@@ -32,7 +32,10 @@ class LoginForm extends Component {
     return (
       <div>
         <h3>Login</h3>
-        <AuthForm onSubmit={this.onSubmit.bind(this)} errors={errors} />
+        <AuthForm
+          onSubmit={this.onSubmit.bind(this)}
+          errors={this.state.errors}
+        />
       </div>
     );
   }
