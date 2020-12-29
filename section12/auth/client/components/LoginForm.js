@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 
+import query from "../queries/CurrentUser";
 import mutation from "../mutations/Login";
 import AuthForm from "./AuthForm";
 
@@ -11,6 +12,7 @@ class LoginForm extends Component {
         email,
         password,
       },
+      refetchQueries: [{ query }],
     });
   }
 
