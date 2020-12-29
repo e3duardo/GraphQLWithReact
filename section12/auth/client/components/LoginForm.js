@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import { Link } from "react-router";
 
-import query from "../queries/CurrentUser";
-import mutation from "../mutations/Logout";
+import mutation from "../mutations/Login";
 import AuthForm from "./AuthForm";
 
 class LoginForm extends Component {
+  onLogin({ email, password }) {
+    this.props.mutate({
+      args: {
+        email,
+        password,
+      },
+    });
+  }
+
   render() {
     return (
       <div>
@@ -17,4 +24,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default graphql(mutation)(LoginForm);
